@@ -80,7 +80,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">P.List</h6>
-            <a class="collapse-item" href="{{route('SuperAdmin.index')}}">Doctors</a>
+            <a class="collapse-item" href="{{route('SuperAdmin.doctors')}}">Doctors</a>
             <a class="collapse-item" href="#">Edit Doctor</a>
             <a class="collapse-item" href="#">Show Doctor</a>
           </div>
@@ -336,7 +336,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{route('Login.index')}}" data-toggle="modal" data-target="#logoutModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  <a href="{{route('logout')}}">Logout</a>
                 </a>
               </div>
             </li>

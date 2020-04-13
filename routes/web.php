@@ -20,10 +20,20 @@ Route::get('/Login','LoginController@index')->name('Login.index');
 Route::post('/Login','LoginController@verifyUser')->name('Login.verifyUser');
 
 //Super Admin Page Route
-Route::get('/SuperAdmin','SuperAdminController@index')->name('SuperAdmin.index');
-Route::get('/SuperAdmin/report','SuperAdminController@report')->name('SuperAdmin.report');
-Route::get('/SuperAdmin/Department/{dep}','SuperAdminController@department')->name('SuperAdmin.department');
-Route::get('/SuperAdmin/DoctorProfile/{DoctorId}','SuperAdminController@doctorProfile')->name('SuperAdmin.doctorProfile');
-
+//index
+Route::get('/SuperAdmin','SuperAdminController@index')->name('SuperAdmin.index')->middleware('sessionCheck');
+//reporting
+Route::get('/SuperAdmin/reporting','SuperAdminController@reporting')->name('SuperAdmin.reporting');
+//Doctor
+Route::get('/SuperAdmin/doctors','SuperAdminController@doctors')->name('SuperAdmin.doctors');
+//Doctor Department
+Route::get('/SuperAdmin/doctors/Department/{dep}','SuperAdminController@DoctorDepartment')->name('SuperAdmin.DoctorDepartment');
+//Doctor Profile
+Route::get('/SuperAdmin/doctorProfile/{DoctorId}','SuperAdminController@doctorProfile')->name('SuperAdmin.doctorProfile');
+//edit Doctor
 Route::get('/SuperAdmin/editDoctor/{DoctorId}','SuperAdminController@editDoctor')->name('SuperAdmin.editDoctor');
 Route::post('/SuperAdmin/editDoctor/{DoctorId}','SuperAdminController@updateDoctor')->name('SuperAdmin.editDoctor');
+
+
+//logout
+Route::get('/logout', 'LogoutController@index')->name('logout');

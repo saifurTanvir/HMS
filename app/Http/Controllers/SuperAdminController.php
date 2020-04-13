@@ -7,21 +7,28 @@ use Illuminate\Support\Facades\DB;
 use App\Doctor;
 
 class SuperAdminController extends Controller
-{
+{   
     public function index(){
+        return view('SuperAdmin.index');
+    }
+
+    //reporting sample
+    public function reporting(){
+        return view('SuperAdmin.report');
+    }
+    
+    //Doctors
+    public function doctors(){
         $doctors = Doctor::all();
         $department = DB::select('SELECT DISTINCT Department FROM Doctors');
         //error_log(print_r( $department, true ) );
-        return view('SuperAdmin.index')
+        return view('SuperAdmin.doctors')
             ->with('doctors', $doctors)
             ->with('department', $department);
     }
 
-    public function report(){
-        return view('SuperAdmin.report');
-    }
-
-    public function department($dep){
+    //Doctor Department
+    public function DoctorDepartment($dep){
         //DB::select('select * from users where id = :id', ['id' => 1]);
         $doctors = DB::select('SELECT * FROM Doctors where  Department = :dep', ['dep' => $dep]);
         //error_log(print_r( $doctors, true ) );
@@ -32,7 +39,7 @@ class SuperAdminController extends Controller
             ->with('department', $department);
     }
 
-    //View Doctor Profile
+    //View Doctor Profile 
     public function doctorProfile($DoctorId){
         $doctor = Doctor::find($DoctorId);
         return view('SuperAdmin.doctorProfile',$doctor);
